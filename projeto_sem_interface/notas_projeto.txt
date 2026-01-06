@@ -1,0 +1,18 @@
+1 - Cadastrar livro
+2 - Listar livros
+3 - Emprestar livro(s)
+4 - Devolver livro(s)
+5 - Salvar e sair
+
+Adicionar formatação para enviar 'emprestado' para o .json no lugar de True e 'disponível' no lugar de False e vice-versa.
+
+Adicionar while True para função de cadastro e mensagem de sucesso. Feito.
+
+Adicionar opção de Renovar um livro, somente possível caso não esteja atrasado.
+
+if lista[0]['status'][0]:
+    hoje = date.today()
+    intervalo = hoje - lista[0]['status'][1]
+    print(intervalo.days)
+else:
+    print('Este livro não foi emprestado.')

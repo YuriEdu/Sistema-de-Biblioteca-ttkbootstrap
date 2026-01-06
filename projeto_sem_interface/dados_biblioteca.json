@@ -1,0 +1,62 @@
+[
+    {
+        "código": "202514010010",
+        "título": "1984",
+        "autor": "Orwell, George",
+        "status": [
+            true,
+            "2025-10-04"
+        ],
+        "multa": 46
+    },
+    {
+        "código": "202514010900",
+        "título": "Revolução dos Bichos",
+        "autor": "Orwell, George",
+        "status": [
+            true,
+            "2025-11-09"
+        ],
+        "multa": 0.0
+    },
+    {
+        "código": "12345678",
+        "título": "Legend",
+        "autor": "Lu, Marie",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0
+    },
+    {
+        "código": "34567890",
+        "título": "Prodigy",
+        "autor": "Lu, Marie",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0
+    },
+    {
+        "código": "45678901",
+        "título": "As Memórias Póstumas de Brás Cubas",
+        "autor": "De Assis, Machado",
+        "status": [
+            true,
+            "2025-11-09"
+        ],
+        "multa": 0.0
+    },
+    {
+        "código": "56789012",
+        "título": "Viagem ao Centro da Terra",
+        "autor": "Verne, Júlio",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0
+    }
+]

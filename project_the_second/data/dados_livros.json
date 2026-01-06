@@ -1,0 +1,156 @@
+[
+    {
+        "código": "202512150000",
+        "título": "1984",
+        "autor": "George Orwell",
+        "gênero": "Romance",
+        "subgênero": "Distopia",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1949"
+    },
+    {
+        "código": "202512150001",
+        "título": "Revolução dos Bichos",
+        "autor": "George Orwell",
+        "gênero": "Fábula",
+        "subgênero": "Distopia",
+        "status": [
+            true,
+            "2025-12-15"
+        ],
+        "multa": 14,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1945"
+    },
+    {
+        "código": "202512150002",
+        "título": "A Morte de Ivan Ilitch",
+        "autor": "Liev Tolstói",
+        "gênero": "Romance",
+        "subgênero": "Realismo",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1886"
+    },
+    {
+        "código": "202512150003",
+        "título": "Legend",
+        "autor": "Marie Lu",
+        "gênero": "Romance",
+        "subgênero": "Young Adult – Jovem Adulto",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "2011"
+    },
+    {
+        "código": "202512150004",
+        "título": "Livro do Desassossego",
+        "autor": "Fernando Pessoa",
+        "gênero": "Prosa Poética",
+        "subgênero": "Meditações",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1982"
+    },
+    {
+        "código": "202512150005",
+        "título": "As Memórias Póstumas de Brás Cubas",
+        "autor": "Machado de Assis",
+        "gênero": "Prosa Poética",
+        "subgênero": "Realismo",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1881"
+    },
+    {
+        "código": "202512150006",
+        "título": "Hamlet",
+        "autor": "William Shakespeare",
+        "gênero": "Dramático",
+        "subgênero": "Tragédia",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1623"
+    },
+    {
+        "código": "202512150007",
+        "título": "Dom Casmurro",
+        "autor": "Machado de Assis",
+        "gênero": "Prosa Poética",
+        "subgênero": "Romance",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "1899"
+    },
+    {
+        "código": "202512150008",
+        "título": "Apologia de Sócrates",
+        "autor": "Platão",
+        "gênero": "Apologia",
+        "subgênero": "Filosofia",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "Desconhecido"
+    },
+    {
+        "código": "202512150009",
+        "título": "Uma Breve História da Filosofia",
+        "autor": "Nigel Warburton",
+        "gênero": "Filosofia",
+        "subgênero": "História",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2025-12-15",
+        "ano de publicação": "2012"
+    },
+    {
+        "código": "202601050000",
+        "título": "Tudo é Rio",
+        "autor": "Carla Madeira",
+        "gênero": " Romance ",
+        "subgênero": " Romance ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "data de catálogo": "2026-01-05",
+        "ano de publicação": "2014"
+    }
+]

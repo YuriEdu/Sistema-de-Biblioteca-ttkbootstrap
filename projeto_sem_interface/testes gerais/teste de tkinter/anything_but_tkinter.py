@@ -1,0 +1,24 @@
+import tkinter as tk
+
+window = tk.Tk()
+
+greeting = tk.Label(
+    text="Python rocks!",
+    bg='#34A2FE',
+    width=10)
+greeting.pack()
+
+button = tk.Button(
+    text="Click me!",
+    width=25,
+    height=5,
+    bg="blue",
+    fg="yellow",
+)
+button.pack()
+
+entry = tk.Entry(fg="yellow", bg="blue", width=50)
+entry.pack()
+
+
+window.mainloop()

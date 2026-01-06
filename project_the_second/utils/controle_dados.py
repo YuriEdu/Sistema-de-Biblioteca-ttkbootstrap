@@ -1,0 +1,183 @@
+from datetime import date
+import json
+import tkinter as tk
+from tkinter import messagebox
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
+
+DADOSLIVROS = 'project_the_second/data/dados_livros.json'
+DADOSUSUÁRIOS = 'project_the_second/data/dados_usuários.json'
+DADOSGÊNEROS = 'project_the_second/data/gêneros.txt'
+DADOSSUBGÊNEROS = 'project_the_second/data/subgêneros.txt'
+
+LARGEFONT = ('URW Bookman', 35)
+MEDIUMFONT = ('Veranda', 15)
+SMALLFONT = ('Veranda', 10)
+
+import string
+
+alfabeto = ''.join(string.ascii_lowercase) + ''.join(string.ascii_uppercase)
+
+def validar_cpf(P):
+    len_máxima = 14
+
+    if len(P) <= len_máxima:
+        return True
+    else:
+        return False
+    
+def validar_tel(P):
+    len_máxima = 15
+
+    if len(P) <= len_máxima:
+        return True
+    else:
+        return False
+
+def formatar_cpf(event):
+    if event.keysym.lower() == "backspace": return
+
+    entry = event.widget.get()
+    event.widget.delete(0, tk.END)
+    for i in entry:
+        if i in alfabeto:
+            entry = entry.replace(i, '')
+    if len(entry) == 3 or len(entry) == 7:
+        entry += '.'
+    elif len(entry) == 11:
+        entry += '-'
+    event.widget.insert(0, entry)
+
+def formatar_telefone(event):
+    if event.keysym.lower() == "backspace": return
+
+    telefone = event.widget.get()
+    event.widget.delete(0, tk.END)
+    for i in telefone:
+        if i in alfabeto:
+            telefone = telefone.replace(i, '')
+    if len(telefone) == 2:
+        telefone = '(' + telefone+ ') '
+    if len(telefone) == 10:
+        telefone += '-'
+    event.widget.insert(0, telefone)
+
+def limpar(entry_list, erro, sucesso, tipo=0):
+    for i in entry_list:
+        i.delete(0, tk.END)
+
+    tipo = -1
+    erro.config(text='')
+    sucesso.config(text='')
+
+def salvar(lista, mostrar_mensagem=False):
+    livros_filtrados = []
+
+    for i in lista:
+        livro_filtro = i
+        livro_filtro['status'][1] = str(livro_filtro['status'][1])
+        livros_filtrados.append(livro_filtro)
+
+    with open(DADOSLIVROS, 'w', encoding='utf-8') as arquivo:
+        json.dump(livros_filtrados, arquivo, ensure_ascii=False, indent=4)
+
+    if mostrar_mensagem:
+        mensagem = messagebox.showinfo('Salvando', 'Dados salvos com SUCESSO!')
+    print('Dados salvos com sucesso!')
+
+def destruir(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+
+def importar_livros():
+    livros = []
+    multa = 2
+
+    with open(DADOSLIVROS, 'r', encoding='utf-8') as arquivo:
+        try:
+            livros = json.load(arquivo)
+        except Exception:
+            pass
+
+    for i in livros:
+        data_inteira = []
+        if i['status'][0]:
+            data = i['status'][1].split('-')
+            for e in data:
+                data_inteira.append(int(e))
+            data_formatada = date(*data_inteira)
+            i['status'][1] = data_formatada
+
+            hoje = date.today()
+            intervalo = hoje - i['status'][1]
+            i['multa'] = multa * (intervalo.days - 14) if (intervalo.days - 14) > 0 else 0.0
+    return livros
+
+def importar_usuários():
+    usuários = []
+
+    with open(DADOSUSUÁRIOS, 'r', encoding='utf-8') as arquivo:
+        try:
+            usuários = json.load(arquivo)
+        except Exception:
+            pass
+
+    return usuários
+
+def deletar():
+    pass
+
+def atualizar():
+    pass
+
+def cadastrar_usuário(entry_list, radio, erro, sucesso):
+    sucesso.config(text='')
+    cadastro = {}
+    tipo = radio.get()
+    usuário = entry_list[0]
+    cpf = entry_list[1]
+    senha = entry_list[2]
+    confirmar_senha = entry_list[3]
+    telefone = entry_list[4]
+
+    nomes_valores = ['Nome', 'CPF', 'Senha', 'Telefone']
+
+    if tipo == 0:
+        erro.config(text='Um tipo(Admin ou Usuário) precisa ser selecionado')
+        return
+    
+    for i in usuários:
+        if i['usuário'] == usuário.get():
+            erro.config(text=f'Nome não disponível')
+            return
+
+    if senha.get() != confirmar_senha.get():
+        erro.config(text='As senhas estão diferentes')
+        return
+    
+    for índice, valor in enumerate(entry_list):
+        if not valor.get():
+            erro.config(text=f'{nomes_valores[índice]} precisa ser preenchido(a)')
+            return
+    
+    if tipo == 2:
+        cadastro['tipo'] = True
+    elif tipo == 1:
+        cadastro['tipo'] = False
+    cadastro['usuário'] = usuário.get().strip()
+    cadastro['cpf'] = cpf.get()
+    cadastro['senha'] = senha.get()
+    cadastro['telefone'] = telefone.get()
+
+    usuários.append(cadastro)
+
+    with open(DADOSUSUÁRIOS, 'w', encoding='utf-8') as arquivo:
+        json.dump(usuários, arquivo, ensure_ascii=False, indent=4)
+
+    limpar(entry_list, erro, sucesso, tipo=tipo)
+
+    erro.config(text='')
+    sucesso.config(text='Cadastro Realizado com SUCESSO!')
+    
+catálogo = importar_livros()
+usuários = importar_usuários()
