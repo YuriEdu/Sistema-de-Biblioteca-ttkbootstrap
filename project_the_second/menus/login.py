@@ -33,7 +33,7 @@ class Login(tk.Frame):
         btn_login = ttk.Button(frame_buttons, text='Login', width=10,
                                command=lambda : self.validar_login(parent, entry_username, entry_senha, controller, lbl_erro))
         
-        self.master.master.bind('<Return>', enter_pressionado)
+        self.master.master.bind('<Return>', enter_pressionado, salvar(catálogo))
 
         label_username.grid(column=0, row=2, sticky='e')
         label_senha.grid(column=0, row=3, sticky='e')

@@ -3,6 +3,7 @@ from utils.controle_dados import *
 import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+from utils.controle_de_widgets import *
 
 gêneros = []
 
@@ -49,33 +50,14 @@ class Atualizar(tk.Toplevel):
         frame_interior = tk.Frame(canvas)
         canvas.create_window((0, 0), window=frame_interior, anchor='nw')
         
-        self.listar_itens(catálogo, frame_interior)
-
-    def gerar_texto(self, dict, end='status'):
-        text = ''
-        for key, value in dict.items():
-            if key == 'multa':
-                text += f'\n{key.capitalize()}: R${value:5.2f}'
-            elif key == 'status':
-                text += f'{key.capitalize()}: {'EMPRESTADO' if value[0] else 'DISPONÍVEL'}'
-            elif key == 'código':
-                text += f'{key.capitalize()}: {value:<55}\n'
-            elif key == 'gênero':
-                continue
-            elif key == 'subgênero':
-                continue
-            else:
-                text += f'{key.capitalize()}: {value}\n'
-            if key == end:
-                break
-        return text
+        self.listar_update_itens(catálogo, frame_interior)
     
-    def criar_buttons(self, dict, janela, end):
-        text = self.gerar_texto(dict, end)
+    def criar_update_buttons(self, dict, janela, end):
+        text = gerar_texto(dict, end)
         btn = ttk.Button(janela, text=text, command=lambda : self.popup_atualizar(btn['text']))
         return btn
     
-    def listar_itens(self, lista, janela, end='status'):
+    def listar_update_itens(self, lista, janela, end='status'):
         pad_x = 13.6
         if len(lista) % 2 == 0:
             for a in range(0, len(lista)):
@@ -83,10 +65,10 @@ class Atualizar(tk.Toplevel):
                     frame = ttk.Frame(janela)
                     frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
 
-                    btn_1 = self.criar_buttons(lista[a], frame, end)
+                    btn_1 = self.criar_update_buttons(lista[a], frame, end)
                     btn_1.pack(side='left', padx=5)
 
-                    btn_2 = self.criar_buttons(lista[a + 1], frame, end)
+                    btn_2 = self.criar_update_buttons(lista[a + 1], frame, end)
                     btn_2.pack(side='right', padx=5)
         else:
             for a in range(0, len(lista)):
@@ -94,16 +76,16 @@ class Atualizar(tk.Toplevel):
                     frame = ttk.Frame(janela)
                     frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
 
-                    btn_1 = self.criar_buttons(lista[a], frame, end)
+                    btn_1 = self.criar_update_buttons(lista[a], frame, end)
                     btn_1.pack(side='left', padx=5)
 
-                    btn_2 = self.criar_buttons(lista[a + 1], frame, end)
+                    btn_2 = self.criar_update_buttons(lista[a + 1], frame, end)
                     btn_2.pack(side='right', padx=5)
 
             frame = ttk.Frame(janela)
             frame.pack(side='left', pady=5, padx=int(janela.master.cget('width')) // pad_x)
 
-            btn_last = self.criar_buttons(lista[len(lista) - 1], frame, end)
+            btn_last = self.criar_update_buttons(lista[len(lista) - 1], frame, end)
             btn_last.pack(side='left', padx=5)
 
     def popup_atualizar(self, btn_text):
@@ -111,9 +93,9 @@ class Atualizar(tk.Toplevel):
         btn_código = btn_text[8:20]
 
         popup = tk.Toplevel()
-        popup.title('Atualizar Produto')
+        popup.title('Atualizar Livro')
 
-        label = ttk.Label(popup, text='Atualizar Produto', font=LARGEFONT)
+        label = ttk.Label(popup, text='Atualizar Livro', font=LARGEFONT)
         label.pack(padx=60, pady=20)
 
         frame = tk.Frame(popup)

@@ -1,6 +1,7 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+from utils.controle_dados import *
 
 def ativar_botões_de_menu(button_list):
     for i in button_list:
@@ -29,11 +30,6 @@ def gerar_texto(dict, end='status'):
 def criar_buttons(dict, janela, end):
     text = gerar_texto(dict, end)
     btn = ttk.Button(janela, text=text)
-    return btn
-
-def criar_checkbuttons(dict, janela, end):
-    text = gerar_texto(dict, end)
-    btn = ttk.Checkbutton(janela, text=text, bootstyle='info-outline-toolbutton')
     return btn
 
 def listar_itens(lista, janela, end='status'):
@@ -67,33 +63,3 @@ def listar_itens(lista, janela, end='status'):
         btn_last = criar_buttons(lista[len(lista) - 1], frame, end)
         btn_last.pack(side='left', padx=5)
 
-def listar_itens_com_checkbuttons(lista, janela, end='status'):
-    pad_x = 13
-    if len(lista) % 2 == 0:
-        for a in range(0, len(lista)):
-            if a % 2 == 0:
-                frame = ttk.Frame(janela)
-                frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
-
-                btn_1 = criar_checkbuttons(lista[a], frame, end)
-                btn_1.pack(side='left', padx=5)
-
-                btn_2 = criar_checkbuttons(lista[a + 1], frame, end)
-                btn_2.pack(side='right', padx=5)
-    else:
-        for a in range(0, len(lista)):
-            if a % 2 == 0 and a < len(lista) - 1:
-                frame = ttk.Frame(janela)
-                frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
-
-                btn_1 = criar_checkbuttons(lista[a], frame, end)
-                btn_1.pack(side='left', padx=5)
-
-                btn_2 = criar_checkbuttons(lista[a + 1], frame, end)
-                btn_2.pack(side='right', padx=5)
-
-        frame = ttk.Frame(janela)
-        frame.pack(side='left', pady=5, padx=int(janela.master.cget('width')) // pad_x)
-
-        btn_last = criar_checkbuttons(lista[len(lista) - 1], frame, end)
-        btn_last.pack(side='left', padx=5)

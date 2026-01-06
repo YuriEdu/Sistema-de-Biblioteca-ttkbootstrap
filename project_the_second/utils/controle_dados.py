@@ -14,6 +14,8 @@ LARGEFONT = ('URW Bookman', 35)
 MEDIUMFONT = ('Veranda', 15)
 SMALLFONT = ('Veranda', 10)
 
+btn_variables = []
+
 import string
 
 alfabeto = ''.join(string.ascii_lowercase) + ''.join(string.ascii_uppercase)
@@ -75,6 +77,17 @@ def salvar(lista, mostrar_mensagem=False):
 
     for i in lista:
         livro_filtro = i
+        if livro_filtro['status'][0]:
+            data_inteira = []
+            data = str(i['status'][1]).split('-')
+            for e in data:
+                data_inteira.append(int(e))
+            data_formatada = date(*data_inteira)
+            hoje = date.today()
+            intervalo = hoje - data_formatada
+            if intervalo.days > 14:
+                print(f'Emprestado em {i['status'][1]}. Atrasado a {intervalo.days - 14} dias.')
+                livro_filtro['multa'] = (intervalo.days - 14) * 2
         livro_filtro['status'][1] = str(livro_filtro['status'][1])
         livros_filtrados.append(livro_filtro)
 

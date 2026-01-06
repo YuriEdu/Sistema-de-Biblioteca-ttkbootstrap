@@ -57,6 +57,48 @@ class Listar(tk.Toplevel):
         
         listar_itens(catálogo, frame_interior)
 
+    def criar_checkbuttons(self, dict, janela, end):
+        text = gerar_texto(dict, end)
+        btn = ttk.Checkbutton(janela, text=text, bootstyle='info-outline-toolbutton')
+        return btn
+    
+    def check_selection(self, btn, lista):
+        if btn.instate(['selected']):
+            print(btn.cget('text'))
+            print(btn.cget('text')[8:20])
+            lista.append(btn.cget('text')[8:20])
+
+    def listar_itens_com_checkbuttons(self, lista, janela, end='status'):
+        pad_x = 13
+        if len(lista) % 2 == 0:
+            for a in range(0, len(lista)):
+                if a % 2 == 0:
+                    frame = ttk.Frame(janela)
+                    frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
+
+                    btn_1 = self.criar_checkbuttons(lista[a], frame, end)
+                    btn_1.pack(side='left', padx=5)
+
+                    btn_2 = self.criar_checkbuttons(lista[a + 1], frame, end)
+                    btn_2.pack(side='right', padx=5)
+        else:
+            for a in range(0, len(lista)):
+                if a % 2 == 0 and a < len(lista) - 1:
+                    frame = ttk.Frame(janela)
+                    frame.pack(fill='y', pady=5, padx=int(janela.master.cget('width')) // pad_x)
+
+                    btn_1 = self.criar_checkbuttons(lista[a], frame, end)
+                    btn_1.pack(side='left', padx=5)
+
+                    btn_2 = self.criar_checkbuttons(lista[a + 1], frame, end)
+                    btn_2.pack(side='right', padx=5)
+
+            frame = ttk.Frame(janela)
+            frame.pack(side='left', pady=5, padx=int(janela.master.cget('width')) // pad_x)
+
+            btn_last = self.criar_checkbuttons(lista[len(lista) - 1], frame, end)
+            btn_last.pack(side='left', padx=5)
+
     def emprestar(self, lista, janela, label, button_list):
         destruir(janela)
 
@@ -65,7 +107,7 @@ class Listar(tk.Toplevel):
         for i in lista:
             if not i['status'][0]:
                 livros_disponíveis.append(i)
-        listar_itens_com_checkbuttons(livros_disponíveis, janela)
+        self.listar_itens_com_checkbuttons(livros_disponíveis, janela)
         label.config(text='Empréstimo')
 
         frame_voltar = ttk.Frame(janela.master)
@@ -78,26 +120,10 @@ class Listar(tk.Toplevel):
                                                                             ativar_botões_de_menu(button_list)])
         btn_voltar.pack(side='left', pady=5, padx=5)
 
-        btn_finalizar = ttk.Button(frame_voltar, text='Finalizar')
+        btn_finalizar = ttk.Button(frame_voltar, text='Finalizar',
+                                   command=lambda : [self.print_all_selected(janela, True), self.emprestar(catálogo, janela, label, button_list), frame_voltar.destroy()])
+        
         btn_finalizar.pack(side='right', pady=5, padx=5)
-
-        '''
-        livros_emprestados = []
-        for i in lista:
-            if i['status'][0]:
-                livros_emprestados.append(i)
-        for i in livros_emprestados:
-            hoje = date.today()
-            intervalo = hoje - i['status'][1]
-            print(f'\nCódigo: {i['código']}')
-            print(f'Título: {i['título']}')
-            print(f'Autor: {i['autor']}')
-            if intervalo.days > 14:
-                print(f'Emprestado em {i['status'][1]}. Atrasado a {intervalo.days - 14} dias.')
-                print(f'Multa = R${i['multa']:5.2f}')
-            else:
-                print(f'Emprestado em {i['status'][1]}. {14 - intervalo.days} dias para devolução sem multa.')
-        '''
 
     def devolver(self, lista, janela, label, button_list):
         destruir(janela)
@@ -107,7 +133,7 @@ class Listar(tk.Toplevel):
         for i in lista:
             if i['status'][0]:
                 livros_emprestados.append(i)
-        listar_itens_com_checkbuttons(livros_emprestados, janela, end='multa')
+        self.listar_itens_com_checkbuttons(livros_emprestados, janela, end='multa')
         label.config(text='Devolução')
 
         frame_voltar = ttk.Frame(janela.master)
@@ -120,5 +146,35 @@ class Listar(tk.Toplevel):
                                                                             ativar_botões_de_menu(button_list)])
         btn_voltar.pack(side='left', pady=5, padx=5)
 
-        btn_finalizar = ttk.Button(frame_voltar, text='Finalizar')
+        btn_finalizar = ttk.Button(frame_voltar, text='Finalizar',
+                                   command=lambda : [self.print_all_selected(janela, False), self.devolver(catálogo, janela, label, button_list), frame_voltar.destroy()])
+        
         btn_finalizar.pack(side='right', pady=5, padx=5)
+
+    def print_all_selected(self, frame, tipo):
+        selecionados = []
+
+        for widget in frame.winfo_children():
+            if isinstance(widget, ttk.Frame):
+                for button in widget.winfo_children():
+                    if isinstance(button, ttk.Checkbutton):
+                        self.check_selection(button, selecionados)
+        if tipo:
+            for i in selecionados:
+                for index, livro in enumerate(catálogo):
+                    if i == livro['código'] and not livro['status'][0]:
+                        catálogo[index]['status'][0] = True
+                        catálogo[index]['status'][1] = str(date.today())
+                        print(catálogo[index]['status'][1])
+
+        else:
+            for i in selecionados:
+                for index, livro in enumerate(catálogo):
+                    if i == livro['código'] and livro['status'][0]:
+                        catálogo[index]['status'][0] = False
+                        catálogo[index]['status'][1] = '0'
+                        catálogo[index]['multa'] = 0.0
+                        print(catálogo[index]['status'][1])
+
+        print(catálogo)
+        salvar(catálogo)
