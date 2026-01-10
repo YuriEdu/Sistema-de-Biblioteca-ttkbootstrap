@@ -53,7 +53,7 @@ class Atualizar(tk.Toplevel):
         self.listar_update_itens(catálogo, frame_interior)
     
     def criar_update_buttons(self, dict, janela, end):
-        text = gerar_texto(dict, end)
+        text = gerar_texto(dict, end=end, tipo='livro')
         btn = ttk.Button(janela, text=text, command=lambda : self.popup_atualizar(btn['text']))
         return btn
     
@@ -165,4 +165,4 @@ class Atualizar(tk.Toplevel):
                 livro['subgênero'] = entry_list[4].get()
                 break
 
-        salvar(catálogo)
+        salvar_livros()

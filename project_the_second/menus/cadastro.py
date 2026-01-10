@@ -106,8 +106,8 @@ class Cadastro(tk.Frame):
         cadastro['subgênero'] = subgênero.get()
         cadastro['status'] = [False, 0]
         cadastro['multa'] = 0.0
-        cadastro['data de catálogo'] = f'{date.today()}'
         cadastro['ano de publicação'] = publicação.get()
+        cadastro['data de catálogo'] = str(date.today())
         catálogo.append(cadastro)
 
         if subgênero.get() not in subgêneros:
@@ -118,10 +118,11 @@ class Cadastro(tk.Frame):
 
         título.delete(0, END)
         autor.delete(0, END)
+        publicação.delete(0, END)
         gênero.set('')
         subgênero.set('')
 
         label.config(text=f'{cadastro['título']} de {cadastro["autor"]} cadastrado com SUCESSO!')
 
-        salvar(catálogo)
+        salvar_livros()
         print(catálogo)

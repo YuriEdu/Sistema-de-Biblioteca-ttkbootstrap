@@ -33,7 +33,7 @@ class Login(tk.Frame):
         btn_login = ttk.Button(frame_buttons, text='Login', width=10,
                                command=lambda : self.validar_login(parent, entry_username, entry_senha, controller, lbl_erro))
         
-        self.master.master.bind('<Return>', enter_pressionado, salvar(catálogo))
+        self.master.master.bind('<Return>', enter_pressionado, salvar_livros())
 
         label_username.grid(column=0, row=2, sticky='e')
         label_senha.grid(column=0, row=3, sticky='e')
@@ -41,7 +41,7 @@ class Login(tk.Frame):
         entry_senha.grid(column=1, row=3, sticky='e', padx=5, pady=5)
         btn_login.grid(column=0, row=0, sticky='s', columnspan=5, pady=40)
 
-    def validar_login(self, parent, entry_username, entry_senha, cont, label):
+    def validar_login(self, parent, entry_username, entry_senha, cont, label,):
         usuário_encontrado = False
         usuário = entry_username.get()
         senha = entry_senha.get()
@@ -53,7 +53,9 @@ class Login(tk.Frame):
                         cont.show_frame(PáginaInicial)
                         break
                     else:
-                        cont.show_frame(PáginaInicial)
+                        PáginaUsuário(cont, usuário, senha)
+                        entry_username.delete(0, END)
+                        entry_senha.delete(0, END)
                     break
                 else:
                     label.config(text='Senha incorreta')

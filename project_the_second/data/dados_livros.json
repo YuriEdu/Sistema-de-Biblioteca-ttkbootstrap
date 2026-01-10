@@ -7,7 +7,7 @@
         "subgênero": "Distopia",
         "status": [
             true,
-            "2026-01-06"
+            "2026-01-09"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
@@ -21,7 +21,7 @@
         "subgênero": "Distopia",
         "status": [
             true,
-            "2026-01-06"
+            "2026-01-09"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
@@ -76,8 +76,8 @@
         "gênero": "Prosa Poética",
         "subgênero": "Realismo",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-01-09"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
@@ -152,5 +152,131 @@
         "multa": 0.0,
         "data de catálogo": "2026-01-05",
         "ano de publicação": "2014"
+    },
+    {
+        "código": "202601100000",
+        "título": "Alice no País das Maravilhas",
+        "autor": "Lewis Carroll",
+        "gênero": " Romance ",
+        "subgênero": " Infantil ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1865",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100001",
+        "título": "Anne de Grenn Gables",
+        "autor": "L. M. Montgomery",
+        "gênero": " Romance ",
+        "subgênero": " Infantil ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1908",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100002",
+        "título": "O Chamado de Cthulhu",
+        "autor": "H. P. Lovecraft",
+        "gênero": " Conto ",
+        "subgênero": " Terror ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1928",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100003",
+        "título": "Crime e Castigo",
+        "autor": "Fiódor Dostoiévski",
+        "gênero": " Romance ",
+        "subgênero": "Drama",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1866",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100004",
+        "título": "Dom Quixote",
+        "autor": "Miguel de Cervantes",
+        "gênero": " Romance ",
+        "subgênero": "Sátira",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1605",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100005",
+        "título": "Dr. Jekyll e Mr. Hyde",
+        "autor": "Robert Louis Stevenson",
+        "gênero": " Novela ",
+        "subgênero": " Terror ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1886",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100006",
+        "título": "Drácula",
+        "autor": "Bram Stoker",
+        "gênero": " Romance ",
+        "subgênero": " Terror ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1897",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100007",
+        "título": "Frankenstein",
+        "autor": "Mary Shelley",
+        "gênero": " Romance ",
+        "subgênero": " Ficção Científica ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1818",
+        "data de catálogo": "2026-01-10"
+    },
+    {
+        "código": "202601100008",
+        "título": "O Grande Gatsby",
+        "autor": "F. Scott Fitzgerald",
+        "gênero": " Romance ",
+        "subgênero": " Tragédia",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1925",
+        "data de catálogo": "2026-01-10"
     }
 ]

@@ -1,10 +1,8 @@
 import tkinter as tk
-import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from menus.login import Login
+from menus.login import Login, PáginaUsuário
 from menus.página_inicial import PáginaInicial, UsuárioCadastro
 from menus.cadastro import Cadastro
-from menus.atualizar import Atualizar
 
 class tkinterApp(tk.Tk):
 

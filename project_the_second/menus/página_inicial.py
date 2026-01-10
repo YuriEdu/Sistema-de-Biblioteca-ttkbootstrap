@@ -22,7 +22,7 @@ class PáginaInicial(tk.Frame):
                              command=lambda : [controller.show_frame(Cadastro), self.master.master.unbind('<Return>')])
         button1.grid(row=1, column=1, padx=5, pady=5)
 
-        button2 = ttk.Button(self, text='Listar livros', width=20,
+        button2 = ttk.Button(self, text='Catálogo', width=20,
                              command=lambda : Listar(controller))
         button2.grid(row=2, column=1, padx=5, pady=5)
 
@@ -39,7 +39,7 @@ class PáginaInicial(tk.Frame):
         button7.grid(row=5, column=1, padx=5, pady=5)
 
         button5 = ttk.Button(self, text='Salvar', width=20,
-                             command=lambda : salvar(catálogo, mostrar_mensagem=True))
+                             command=lambda : salvar_livros(mostrar_mensagem=True))
         button5.grid(row=6, column=1, padx=5, pady=5)
 
         button6 = ttk.Button(self, text='Sair', width=20,

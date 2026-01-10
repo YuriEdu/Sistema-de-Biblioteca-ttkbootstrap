@@ -72,10 +72,10 @@ def limpar(entry_list, erro, sucesso, tipo=0):
     erro.config(text='')
     sucesso.config(text='')
 
-def salvar(lista, mostrar_mensagem=False):
+def salvar_livros(mostrar_mensagem=False):
     livros_filtrados = []
 
-    for i in lista:
+    for i in catálogo:
         livro_filtro = i
         if livro_filtro['status'][0]:
             data_inteira = []
@@ -86,7 +86,6 @@ def salvar(lista, mostrar_mensagem=False):
             hoje = date.today()
             intervalo = hoje - data_formatada
             if intervalo.days > 14:
-                print(f'Emprestado em {i['status'][1]}. Atrasado a {intervalo.days - 14} dias.')
                 livro_filtro['multa'] = (intervalo.days - 14) * 2
         livro_filtro['status'][1] = str(livro_filtro['status'][1])
         livros_filtrados.append(livro_filtro)
@@ -97,6 +96,12 @@ def salvar(lista, mostrar_mensagem=False):
     if mostrar_mensagem:
         mensagem = messagebox.showinfo('Salvando', 'Dados salvos com SUCESSO!')
     print('Dados salvos com sucesso!')
+
+def salvar_usuários():
+    with open(DADOSUSUÁRIOS, 'w', encoding='utf-8') as arquivo:
+        json.dump(usuários, arquivo, ensure_ascii=False, indent=4)
+
+    print('Usuários salvos com sucesso!')
 
 def destruir(frame):
     for widget in frame.winfo_children():
@@ -191,6 +196,44 @@ def cadastrar_usuário(entry_list, radio, erro, sucesso):
 
     erro.config(text='')
     sucesso.config(text='Cadastro Realizado com SUCESSO!')
-    
+
+def emprestar_livros(livros_para_emprestar, cpf_usuário):
+    for i in livros_para_emprestar:
+        print('teste')
+        for index, livro in enumerate(catálogo):
+            if i == livro['código'] and not livro['status'][0]:
+                catálogo[index]['status'][0] = True
+                catálogo[index]['status'][1] = str(date.today())
+                for índice, user in enumerate(usuários):
+                    if user['cpf'] == cpf_usuário:
+                        usuários[índice]['livros'] += f'{livro['código']}; '
+    salvar_usuários()
+    salvar_livros()
+
+def check_selection(btn, lista):
+    if btn.instate(['selected']):
+        lista.append(btn.cget('text')[8:20])
+
+def print_all_selected(frame, emprestar):
+    selecionados = []
+
+    for widget in frame.winfo_children():
+        if isinstance(widget, ttk.Frame):
+            for button in widget.winfo_children():
+                if isinstance(button, ttk.Checkbutton):
+                    check_selection(button, selecionados)
+    if emprestar:
+        return selecionados
+
+    else:
+        for i in selecionados:
+            for index, livro in enumerate(catálogo):
+                if i == livro['código'] and livro['status'][0]:
+                    catálogo[index]['status'][0] = False
+                    catálogo[index]['status'][1] = '0'
+                    catálogo[index]['multa'] = 0.0
+
+    salvar_livros()
+
 catálogo = importar_livros()
 usuários = importar_usuários()
