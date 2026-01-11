@@ -21,6 +21,13 @@ class Listar(tk.Toplevel):
                         if isinstance(button, ttk.Checkbutton):
                             check = True
 
+            destruir(frame_interior)
+            
+            if check:
+                self.listar_itens_com_checkbuttons(catálogo, frame_interior)
+            else:
+                listar_itens(catálogo, frame_interior)
+
             if termo == '':
                 destruir(frame_interior)
                 if check:
