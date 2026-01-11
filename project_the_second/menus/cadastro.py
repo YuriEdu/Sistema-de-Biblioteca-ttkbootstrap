@@ -74,6 +74,11 @@ class Cadastro(tk.Frame):
         if not título.get():
             label['text'] = 'O TÍTULO precisa ser preenchido'
             return
+        else:
+            for i in catálogo:
+                if título.get().lower() == i['título'].lower():
+                    label['text'] = 'Este livro já foi registrado'
+                    return
         if not autor.get():
             label['text'] = 'O AUTOR precisa ser preenchido'
             return
