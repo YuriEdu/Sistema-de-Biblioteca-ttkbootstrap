@@ -1,18 +1,34 @@
 from datetime import date
 import json
 import tkinter as tk
+import platform
 from tkinter import messagebox
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 
-DADOSLIVROS = 'project_the_second/data/dados_livros.json'
-DADOSUSUÁRIOS = 'project_the_second/data/dados_usuários.json'
-DADOSGÊNEROS = 'project_the_second/data/gêneros.txt'
-DADOSSUBGÊNEROS = 'project_the_second/data/subgêneros.txt'
+sistema = platform.system()
 
-LARGEFONT = ('URW Bookman', 35)
-MEDIUMFONT = ('Veranda', 15)
-SMALLFONT = ('Veranda', 10)
+if sistema == 'Windows':
+    DADOSLIVROS = 'data/dados_livros.json'
+    DADOSUSUÁRIOS = 'data/dados_usuários.json'
+    DADOSGÊNEROS = 'data/gêneros.txt'
+    DADOSSUBGÊNEROS = 'data/subgêneros.txt'
+
+    LARGEFONT = ('Bookman Old Style', 35, 'bold')
+    MEDIUMFONT = ('Verdana', 15)
+    SMALLFONT = ('Verdana', 10)
+    BUTTONFONT = '-size 11'
+
+if sistema == 'Linux':
+    DADOSLIVROS = 'project_the_second/data/dados_livros.json'
+    DADOSUSUÁRIOS = 'project_the_second/data/dados_usuários.json'
+    DADOSGÊNEROS = 'project_the_second/data/gêneros.txt'
+    DADOSSUBGÊNEROS = 'project_the_second/data/subgêneros.txt'
+
+    LARGEFONT = ('URW Bookman', 35, 'bold')
+    MEDIUMFONT = ('Veranda', 15)
+    SMALLFONT = ('Veranda', 10)
+    BUTTONFONT = '-size 10'
 
 btn_variables = []
 

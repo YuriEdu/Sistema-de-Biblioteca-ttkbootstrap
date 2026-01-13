@@ -1,7 +1,6 @@
 import tkinter as tk
 from ttkbootstrap.constants import *
-from menus.login import Login, PáginaUsuário
-from menus.página_inicial import PáginaInicial, UsuárioCadastro
+from menus.login import Login, PáginaUsuário, PáginaInicial, UsuárioCadastro
 from menus.cadastro import Cadastro
 
 class tkinterApp(tk.Tk):

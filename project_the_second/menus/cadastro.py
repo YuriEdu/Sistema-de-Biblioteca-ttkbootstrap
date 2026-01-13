@@ -4,10 +4,6 @@ import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 
-LARGEFONT = ('URW Bookman', 35)
-MEDIUMFONT = ('Veranda', 15)
-SMALLFONT = ('Veranda', 10)
-
 gêneros = []
 
 with open(DADOSGÊNEROS, 'r') as arquivo:
@@ -68,7 +64,7 @@ class Cadastro(tk.Frame):
         cb_subgenre.grid(column=1, row=6, sticky='e', padx=5, pady=5)
         btn_submit.grid(column=0, row=7, sticky='s', columnspan=5, pady=10)
         label_resultado.pack()
-        btn_voltar.pack(side='left', padx=5, pady=5)
+        btn_voltar.pack(side='left', padx=10, pady=10)
 
     def cadastrar(self, título, autor, gênero, subgênero, publicação, label):
         if not título.get():
