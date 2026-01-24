@@ -9,13 +9,22 @@ class Remover(tk.Toplevel):
     def __init__(self, controller):
         tk.Toplevel.__init__(self)
 
+        def _on_mousewheel(event, canvas):
+            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
         self.title('Remover')
         self.resizable(False, True)
         largura_tela = self.winfo_screenwidth()
         altura_tela = self.winfo_screenheight()
-        x = (largura_tela - 700) // 2
-        y = (altura_tela - (altura_tela // 1.2)) // 2
-        self.geometry(f'{700}x{int(altura_tela // 1.2)}+{x}+{int(y)}')
+        if sistema == 'Windows':
+            x = (largura_tela - 900) // 2
+            y = (altura_tela - (altura_tela // 1.2)) // 2
+            self.geometry(f'{900}x{int(altura_tela // 1.2)}+{x}+{int(y)}')
+
+        if sistema == 'Linux':
+            x = (largura_tela - 800) // 2
+            y = altura_tela
+            self.geometry(f'{800}x{altura_tela - (altura_tela // 5)}+{x}+{int(y)}')
 
         label_header = ttk.Label(self, text='Remover', font=LARGEFONT)
         label_header.pack(pady=20)
@@ -37,6 +46,8 @@ class Remover(tk.Toplevel):
 
         frame_interior = tk.Frame(canvas)
         canvas.create_window((0, 0), window=frame_interior, anchor='nw')
+
+        self.bind("<MouseWheel>", lambda event: _on_mousewheel(event, canvas))
         
         self.listar_remover_itens(catálogo, frame_interior)
 
@@ -47,7 +58,10 @@ class Remover(tk.Toplevel):
         return btn
     
     def listar_remover_itens(self, lista, janela, end='status'):
-        pad_x = 13.6
+        if sistema == 'Windows':
+            pad_x = 10.7
+        if sistema == 'Linux':
+            pad_x = 12
         if len(lista) % 2 == 0:
             for a in range(0, len(lista)):
                 if a % 2 == 0:
@@ -80,13 +94,13 @@ class Remover(tk.Toplevel):
     def garantir_certeza(self, btn_text, janela):
         separador = 'Autor: '
 
-        título = btn_text[36:].split(separador)[0].replace('Título: ', '').replace('\n', '').strip().lower()
+        título = btn_text[36:].split(separador)[0].replace('Título: ', '').replace('\n', '').strip()
 
         for i in catálogo:
-            if i['título'].lower() == título:
+            if i['título'].lower() == título.lower():
                 autor = i['autor']
                 break
-        mensagem = messagebox.askokcancel('Remover Livro', f'Tem certeza de que deseja remover {título} de {autor}?', parent=self)
+        mensagem = messagebox.askokcancel('Remover Livro', f'Tem certeza de que deseja remover {título}, de {autor}?', parent=self)
         if mensagem:
             for index, livro in enumerate(catálogo):
                 if livro['título'].lower() == título:

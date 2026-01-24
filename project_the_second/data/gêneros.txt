@@ -1,1 +1,1 @@
-Épico/Narrativo , Lírico , Dramático , Romance , Conto , Novela , Crônica , Fábula , Poema , Ensaio , Biografia/Autobiografia , Prosa Poética , Apologia , Filosofia
+﻿Épico/Narrativo ,Lírico ,Dramático ,Romance ,Conto ,Novela ,Crônica ,Fábula ,Poema ,Ensaio ,Biografia/Autobiografia ,Prosa Poética ,Apologia ,Filosofia

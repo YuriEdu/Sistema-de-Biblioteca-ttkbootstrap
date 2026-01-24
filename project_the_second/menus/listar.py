@@ -9,6 +9,9 @@ class Listar(tk.Toplevel):
     def __init__(self, controller):
         tk.Toplevel.__init__(self)
 
+        def _on_mousewheel(event, canvas):
+            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
         def pesquisa(event):
             termo = search_bar.get()
             separador = 'Autor: '
@@ -56,9 +59,15 @@ class Listar(tk.Toplevel):
         self.resizable(False, True)
         largura_tela = self.winfo_screenwidth()
         altura_tela = self.winfo_screenheight()
-        x = (largura_tela - 700) // 2
-        y = (altura_tela - (altura_tela // 1.2)) // 2
-        self.geometry(f'{700}x{int(altura_tela // 1.2)}+{x}+{int(y)}')
+        if sistema == 'Windows':
+            x = (largura_tela - 900) // 2
+            y = (altura_tela - (altura_tela // 1.2)) // 2
+            self.geometry(f'{900}x{int(altura_tela // 1.2)}+{x}+{int(y)}')
+
+        if sistema == 'Linux':
+            x = (largura_tela - 800) // 2
+            y = altura_tela
+            self.geometry(f'{800}x{altura_tela - (altura_tela // 5)}+{x}+{int(y)}')
 
         label_header = ttk.Label(self, text='Catálogo', font=LARGEFONT)
         label_header.pack(pady=20)
@@ -104,6 +113,8 @@ class Listar(tk.Toplevel):
         frame_interior = tk.Frame(canvas)
         canvas.create_window((0, 0), window=frame_interior, anchor='nw')
         
+        self.bind("<MouseWheel>", lambda event: _on_mousewheel(event, canvas))
+        
         listar_itens(catálogo, frame_interior)
 
     def criar_checkbuttons(self, dict, janela, end):
@@ -112,7 +123,10 @@ class Listar(tk.Toplevel):
         return btn
 
     def listar_itens_com_checkbuttons(self, lista, janela, end='status'):
-        pad_x = 13
+        if sistema == 'Windows':
+            pad_x = 10
+        if sistema == 'Linux':
+            pad_x = 11.3
         if len(lista) % 2 == 0:
             for a in range(0, len(lista)):
                 if a % 2 == 0:
@@ -214,7 +228,11 @@ class Listar(tk.Toplevel):
         destruir(janela)
 
         print(livros_para_emprestar)
-        pad_x = 13.6
+
+        if sistema == 'Windows':
+            pad_x = 10.7
+        if sistema == 'Linux':
+            pad_x = 11
         if len(user_list) % 2 == 0:
             for a in range(0, len(user_list)):
                 if a % 2 == 0:

@@ -26,8 +26,8 @@ class Login(tk.Frame):
 
         label_username = ttk.Label(frame_other, text='Usuário:')
         label_senha = ttk.Label(frame_other, text='Senha:')
-        entry_username = ttk.Entry(frame_other, width=25)
-        entry_senha = ttk.Entry(frame_other, width=25, show='*')
+        entry_username = ttk.Entry(frame_other, width=25, font=SMALLFONT)
+        entry_senha = ttk.Entry(frame_other, width=25, show='*', font=SMALLFONT)
 
         frame_buttons = ttk.Frame(self)
         frame_buttons.pack(pady=20)
@@ -134,15 +134,15 @@ class UsuárioCadastro(tk.Frame):
         label_confirmar_senha = ttk.Label(frame_other, text='Confirmar Senha:')
         label_telefone = ttk.Label(frame_other, text='Telefone:')
 
-        entry_usuário = ttk.Entry(frame_other, width=25)
-        entry_cpf = ttk.Entry(frame_other, width=25, validate='key', validatecommand=(vcmd, '%P'))
+        entry_usuário = ttk.Entry(frame_other, width=25, font=SMALLFONT)
+        entry_cpf = ttk.Entry(frame_other, width=25, validate='key', validatecommand=(vcmd, '%P'), font=SMALLFONT)
         entry_cpf.bind("<KeyRelease>", formatar_cpf)
-        entry_senha = ttk.Entry(frame_other, width=25, show='*')
-        entry_confirmar_senha = ttk.Entry(frame_other, width=25, show='*')
+        entry_senha = ttk.Entry(frame_other, width=25, show='*', font=SMALLFONT)
+        entry_confirmar_senha = ttk.Entry(frame_other, width=25, show='*', font=SMALLFONT)
 
         vcmd = self.register(validar_tel)
 
-        entry_telefone = ttk.Entry(frame_other, width=25, validate='key', validatecommand=(vcmd, '%P'))
+        entry_telefone = ttk.Entry(frame_other, width=25, validate='key', validatecommand=(vcmd, '%P'), font=SMALLFONT)
         entry_telefone.bind("<KeyRelease>", formatar_telefone)
 
         entry_list = [entry_usuário, entry_cpf, entry_senha, entry_confirmar_senha, entry_telefone]

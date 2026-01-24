@@ -17,7 +17,7 @@ if sistema == 'Windows':
     LARGEFONT = ('Bookman Old Style', 35, 'bold')
     MEDIUMFONT = ('Verdana', 15)
     SMALLFONT = ('Verdana', 10)
-    BUTTONFONT = '-size 11'
+    BUTTONFONT = '-size 9'
 
 if sistema == 'Linux':
     DADOSLIVROS = 'project_the_second/data/dados_livros.json'
@@ -222,7 +222,7 @@ def emprestar_livros(livros_para_emprestar, cpf_usuário):
                 catálogo[index]['status'][1] = str(date.today())
                 for índice, user in enumerate(usuários):
                     if user['cpf'] == cpf_usuário:
-                        usuários[índice]['livros'] += f'{livro['código']}; '
+                        usuários[índice]['livros'] += f"{livro['código']}; "
     salvar_usuários()
     salvar_livros()
 
@@ -231,6 +231,7 @@ def check_selection(btn, lista):
         lista.append(btn.cget('text')[8:20])
 
 def print_all_selected(frame, emprestar):
+    print(usuários)
     selecionados = []
 
     for widget in frame.winfo_children():
@@ -248,8 +249,34 @@ def print_all_selected(frame, emprestar):
                     catálogo[index]['status'][0] = False
                     catálogo[index]['status'][1] = '0'
                     catálogo[index]['multa'] = 0.0
+            for index, usuário in enumerate(usuários):
+                try:
+                    if i in usuário['livros']:
+                        usuários[index]['livros'] = usuários[index]['livros'].replace(f"{i}; ", '')
+                except Exception:
+                    continue
 
     salvar_livros()
+    salvar_usuários()
+
+def renovar_livros(frame):
+    selecionados = []
+
+    for widget in frame.winfo_children():
+        if isinstance(widget, ttk.Frame):
+            for button in widget.winfo_children():
+                if isinstance(button, ttk.Checkbutton):
+                    check_selection(button, selecionados)
+
+    for i in selecionados:
+        for index, livro in enumerate(catálogo):
+            if i == livro['código']:
+                catálogo[index]['status'][1] = str(date.today())
+                catálogo[index]['multa'] = 0.0
+                catálogo[index]['renovações'] += 1
+
+    salvar_livros()
+    salvar_usuários()
 
 catálogo = importar_livros()
 usuários = importar_usuários()

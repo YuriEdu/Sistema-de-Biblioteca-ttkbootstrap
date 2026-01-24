@@ -6,12 +6,13 @@
         "gênero": "Romance",
         "subgênero": "Distopia",
         "status": [
-            true,
-            "2026-01-09"
+            false,
+            "0"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1949"
+        "ano de publicação": "1949",
+        "renovações": 0
     },
     {
         "código": "202512150001",
@@ -23,9 +24,10 @@
             true,
             "2026-01-09"
         ],
-        "multa": 0.0,
+        "multa": 2,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1945"
+        "ano de publicação": "1945",
+        "renovações": 0
     },
     {
         "código": "202512150002",
@@ -37,9 +39,10 @@
             true,
             "2026-01-06"
         ],
-        "multa": 0.0,
+        "multa": 8,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1886"
+        "ano de publicação": "1886",
+        "renovações": 0
     },
     {
         "código": "202512150003",
@@ -51,9 +54,10 @@
             true,
             "2026-01-06"
         ],
-        "multa": 0.0,
+        "multa": 8,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "2011"
+        "ano de publicação": "2011",
+        "renovações": 0
     },
     {
         "código": "202512150004",
@@ -65,9 +69,10 @@
             true,
             "2026-01-06"
         ],
-        "multa": 0.0,
+        "multa": 8,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1982"
+        "ano de publicação": "1982",
+        "renovações": 0
     },
     {
         "código": "202512150005",
@@ -79,9 +84,10 @@
             true,
             "2026-01-09"
         ],
-        "multa": 0.0,
+        "multa": 2,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1881"
+        "ano de publicação": "1881",
+        "renovações": 0
     },
     {
         "código": "202512150006",
@@ -90,12 +96,13 @@
         "gênero": "Dramático",
         "subgênero": "Tragédia",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-01-24"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1623"
+        "ano de publicação": "1623",
+        "renovações": 2
     },
     {
         "código": "202512150007",
@@ -109,7 +116,8 @@
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "1899"
+        "ano de publicação": "1899",
+        "renovações": 0
     },
     {
         "código": "202512150008",
@@ -123,7 +131,8 @@
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "Desconhecido"
+        "ano de publicação": "Desconhecido",
+        "renovações": 0
     },
     {
         "código": "202512150009",
@@ -137,7 +146,8 @@
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
-        "ano de publicação": "2012"
+        "ano de publicação": "2012",
+        "renovações": 0
     },
     {
         "código": "202601050000",
@@ -149,9 +159,10 @@
             true,
             "2026-01-06"
         ],
-        "multa": 0.0,
+        "multa": 8,
         "data de catálogo": "2026-01-05",
-        "ano de publicação": "2014"
+        "ano de publicação": "2014",
+        "renovações": 0
     },
     {
         "código": "202601100000",
@@ -165,7 +176,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1865",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100001",
@@ -179,7 +191,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1908",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100002",
@@ -193,7 +206,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1928",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100003",
@@ -207,7 +221,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1866",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100004",
@@ -221,7 +236,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1605",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100005",
@@ -235,7 +251,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1886",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100006",
@@ -249,7 +266,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1897",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100007",
@@ -263,7 +281,8 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1818",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     },
     {
         "código": "202601100008",
@@ -277,6 +296,7 @@
         ],
         "multa": 0.0,
         "ano de publicação": "1925",
-        "data de catálogo": "2026-01-10"
+        "data de catálogo": "2026-01-10",
+        "renovações": 0
     }
 ]

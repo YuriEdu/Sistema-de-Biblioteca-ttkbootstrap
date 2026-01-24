@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from datetime import date
 from utils.controle_dados import *
 import tkinter as tk
@@ -6,13 +8,13 @@ from ttkbootstrap.constants import *
 
 gêneros = []
 
-with open(DADOSGÊNEROS, 'r') as arquivo:
+with open(DADOSGÊNEROS, 'r', encoding='utf-8') as arquivo:
     text = arquivo.read()
     gêneros = text.split(',')
 
 subgêneros = []
 
-with open(DADOSSUBGÊNEROS, 'r') as arquivo:
+with open(DADOSSUBGÊNEROS, 'r', encoding='utf-8') as arquivo:
     text = arquivo.read()
     subgêneros = text.split(',')
 
@@ -33,15 +35,15 @@ class Cadastro(tk.Frame):
         label_ano = ttk.Label(frame_other, text='Ano de Publicação:')
         label_genre = ttk.Label(frame_other, text='Gênero:')
         label_subgenre = ttk.Label(frame_other, text='Subgênero:')
-        entry_title = ttk.Entry(frame_other, width=25)
-        entry_author = ttk.Entry(frame_other, width=25)
-        entry_ano = ttk.Entry(frame_other, width=25)
+        entry_title = ttk.Entry(frame_other, width=25, font=SMALLFONT)
+        entry_author = ttk.Entry(frame_other, width=25, font=SMALLFONT)
+        entry_ano = ttk.Entry(frame_other, width=25, font=SMALLFONT)
 
         gênero = tk.StringVar()
         subgênero = tk.StringVar()
 
-        cb_genre = ttk.Combobox(frame_other, text='Selecione um Gênero', width=23, style='info.TCombobox', textvariable=gênero)
-        cb_subgenre = ttk.Combobox(frame_other, text='Selecione um Subgênero', width=23, style='info.TCombobox', textvariable=subgênero)
+        cb_genre = ttk.Combobox(frame_other, text='Selecione um Gênero', width=23, style='info.TCombobox', textvariable=gênero, font=SMALLFONT)
+        cb_subgenre = ttk.Combobox(frame_other, text='Selecione um Subgênero', width=23, style='info.TCombobox', textvariable=subgênero, font=SMALLFONT)
 
         cb_genre['values'] = gêneros
 
@@ -91,7 +93,7 @@ class Cadastro(tk.Frame):
         código = str(date.today()).replace('-', '')
         if len(catálogo) > 0:
             if catálogo[len(catálogo) - 1]['data de catálogo'] == f'{date.today()}':
-                Cadastro.id = f'{int(catálogo[len(catálogo) - 1]['código'][9:]) + 1:04}'
+                Cadastro.id = f"{int(catálogo[len(catálogo) - 1]['código'][9:]) + 1:04}"
                 código += Cadastro.id
                 Cadastro.id = f'{int(Cadastro.id) + 1:04}'
             else:
@@ -123,7 +125,7 @@ class Cadastro(tk.Frame):
         gênero.set('')
         subgênero.set('')
 
-        label.config(text=f'{cadastro['título']} de {cadastro["autor"]} cadastrado com SUCESSO!')
+        label.config(text=f"{cadastro['título']} de {cadastro['autor']} cadastrado com SUCESSO!")
 
         salvar_livros()
         print(catálogo)

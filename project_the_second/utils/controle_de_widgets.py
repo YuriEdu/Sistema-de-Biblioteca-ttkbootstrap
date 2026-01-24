@@ -16,7 +16,7 @@ def gerar_texto(dict, tipo, end='status'):
             if key == 'multa':
                 text += f'\n{key.capitalize()}: R${value:5.2f}'
             elif key == 'status':
-                text += f'{key.capitalize()}: {'EMPRESTADO' if value[0] else 'DISPONÍVEL'}'
+                text += f"{key.capitalize()}: {'EMPRESTADO' if value[0] else 'DISPONÍVEL'}"
             elif key == 'código':
                 text += f'{key.capitalize()}: {value:<55}\n'
             elif key == 'gênero':
@@ -33,7 +33,7 @@ def gerar_texto(dict, tipo, end='status'):
             if key == 'tipo' or key == 'senha':
                 continue
             elif key == 'cpf':
-                text += f'{key.upper()}: {value:<62}\n'
+                text += f'{key.upper()}: {value:<60}\n'
             elif key == 'telefone':
                 text += f'{key.capitalize()}: {value}'
                 break
@@ -64,7 +64,10 @@ def criar_buttons(dict, janela, end, tipo):
     return btn
 
 def listar_itens(lista, janela, end='status', tipo='livro'):
-    pad_x = 13.6
+    if sistema == 'Windows':
+        pad_x = 10.7
+    if sistema == 'Linux':
+        pad_x = 12
     if len(lista) % 2 == 0:
         for a in range(0, len(lista)):
             if a % 2 == 0:
@@ -93,4 +96,3 @@ def listar_itens(lista, janela, end='status', tipo='livro'):
 
         btn_last = criar_buttons(lista[len(lista) - 1], frame, end, tipo)
         btn_last.pack(side='left', padx=5)
-
