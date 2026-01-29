@@ -118,7 +118,7 @@ class PáginaUsuário(tk.Toplevel):
         livros_renováveis = []
 
         for i in lista:
-            if float(i['multa']) == 0.0:
+            if float(i['multa']) == 0.0 and i['renovações'] < 3:
                 livros_renováveis.append(i)
         self.listar_itens_com_checkbuttons(livros_renováveis, janela, end='multa')
         label.config(text='Renovar')
@@ -145,6 +145,3 @@ class PáginaUsuário(tk.Toplevel):
                                                      ativar_botões_de_menu(button_list)])
 
         btn_finalizar.pack(side='right', pady=5, padx=5)
-    
-    def renovar_livro(self, janela, lista, label, button_list):
-        pass

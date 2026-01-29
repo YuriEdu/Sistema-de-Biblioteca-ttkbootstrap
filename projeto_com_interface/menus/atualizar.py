@@ -7,13 +7,13 @@ from utils.controle_de_widgets import *
 
 gêneros = []
 
-with open(DADOSGÊNEROS, 'r') as arquivo:
+with open(DADOSGÊNEROS, 'r', encoding='utf-8') as arquivo:
     text = arquivo.read()
     gêneros = text.split(',')
 
 subgêneros = []
 
-with open(DADOSSUBGÊNEROS, 'r') as arquivo:
+with open(DADOSSUBGÊNEROS, 'r', encoding='utf-8') as arquivo:
     text = arquivo.read()
     subgêneros = text.split(',')
 

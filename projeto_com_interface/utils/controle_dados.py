@@ -20,10 +20,10 @@ if sistema == 'Windows':
     BUTTONFONT = '-size 9'
 
 if sistema == 'Linux':
-    DADOSLIVROS = 'project_the_second/data/dados_livros.json'
-    DADOSUSUÁRIOS = 'project_the_second/data/dados_usuários.json'
-    DADOSGÊNEROS = 'project_the_second/data/gêneros.txt'
-    DADOSSUBGÊNEROS = 'project_the_second/data/subgêneros.txt'
+    DADOSLIVROS = 'projeto_com_interface/data/dados_livros.json'
+    DADOSUSUÁRIOS = 'projeto_com_interface/data/dados_usuários.json'
+    DADOSGÊNEROS = 'projeto_com_interface/data/gêneros.txt'
+    DADOSSUBGÊNEROS = 'projeto_com_interface/data/subgêneros.txt'
 
     LARGEFONT = ('URW Bookman', 35, 'bold')
     MEDIUMFONT = ('Veranda', 15)
@@ -46,6 +46,14 @@ def validar_cpf(P):
     
 def validar_tel(P):
     len_máxima = 15
+
+    if len(P) <= len_máxima:
+        return True
+    else:
+        return False
+
+def validar_ano(P):
+    len_máxima = 4
 
     if len(P) <= len_máxima:
         return True
@@ -80,13 +88,24 @@ def formatar_telefone(event):
         telefone += '-'
     event.widget.insert(0, telefone)
 
+def formatar_ano(event):
+    if event.keysym.lower() == "backspace": return
+    números = '0123456789'
+
+    ano = event.widget.get()
+    event.widget.delete(0, tk.END)
+    for i in ano:
+        if i not in números:
+            ano = ano.replace(i, '')
+    event.widget.insert(0, ano
+                        )
 def limpar(entry_list, erro, sucesso, tipo=0):
     for i in entry_list:
         i.delete(0, tk.END)
 
     tipo = -1
-    erro.config(text='')
-    sucesso.config(text='')
+    erro.config(text='', bootstyle='danger')
+    sucesso.config(text='', bootstyle='success')
 
 def salvar_livros(mostrar_mensagem=False):
     livros_filtrados = []
@@ -111,13 +130,10 @@ def salvar_livros(mostrar_mensagem=False):
 
     if mostrar_mensagem:
         mensagem = messagebox.showinfo('Salvando', 'Dados salvos com SUCESSO!')
-    print('Dados salvos com sucesso!')
 
 def salvar_usuários():
     with open(DADOSUSUÁRIOS, 'w', encoding='utf-8') as arquivo:
         json.dump(usuários, arquivo, ensure_ascii=False, indent=4)
-
-    print('Usuários salvos com sucesso!')
 
 def destruir(frame):
     for widget in frame.winfo_children():
@@ -177,23 +193,25 @@ def cadastrar_usuário(entry_list, radio, erro, sucesso):
     nomes_valores = ['Nome', 'CPF', 'Senha', 'Telefone']
 
     if tipo == 0:
-        erro.config(text='Um tipo(Admin ou Usuário) precisa ser selecionado')
+        erro.config(text='Um tipo(Admin ou Usuário) precisa ser selecionado', bootstyle='inverse-danger')
         return
     
     for i in usuários:
-        if i['usuário'] == usuário.get():
-            erro.config(text=f'Nome não disponível')
+        if i['cpf'].strip() == cpf.get().strip():
+            erro.config(text=f'CPF não disponível', bootstyle='inverse-danger')
             return
 
     if senha.get() != confirmar_senha.get():
-        erro.config(text='As senhas estão diferentes')
+        erro.config(text='As senhas estão diferentes', bootstyle='inverse-danger')
         return
     
     for índice, valor in enumerate(entry_list):
         if not valor.get():
-            erro.config(text=f'{nomes_valores[índice]} precisa ser preenchido(a)')
+            erro.config(text=f'{nomes_valores[índice]} precisa ser preenchido(a)', bootstyle='inverse-danger')
             return
     
+
+    erro.config(bootstyle='danger')
     if tipo == 2:
         cadastro['tipo'] = True
     elif tipo == 1:
@@ -202,6 +220,8 @@ def cadastrar_usuário(entry_list, radio, erro, sucesso):
     cadastro['cpf'] = cpf.get()
     cadastro['senha'] = senha.get()
     cadastro['telefone'] = telefone.get()
+    if not cadastro['tipo']:
+        cadastro['livros'] = ''
 
     usuários.append(cadastro)
 
@@ -211,18 +231,23 @@ def cadastrar_usuário(entry_list, radio, erro, sucesso):
     limpar(entry_list, erro, sucesso, tipo=tipo)
 
     erro.config(text='')
-    sucesso.config(text='Cadastro Realizado com SUCESSO!')
+    sucesso.config(text='Cadastro Realizado com SUCESSO!', bootstyle='inverse-success')
 
 def emprestar_livros(livros_para_emprestar, cpf_usuário):
+    print(livros_para_emprestar)
+
     for i in livros_para_emprestar:
-        print('teste')
         for index, livro in enumerate(catálogo):
             if i == livro['código'] and not livro['status'][0]:
                 catálogo[index]['status'][0] = True
                 catálogo[index]['status'][1] = str(date.today())
-                for índice, user in enumerate(usuários):
-                    if user['cpf'] == cpf_usuário:
-                        usuários[índice]['livros'] += f"{livro['código']}; "
+    
+    for índice, user in enumerate(usuários):
+        if user['cpf'].strip() == cpf_usuário.strip():
+            for i in livros_para_emprestar:
+                usuários[índice]['livros'] += f"{i}; "
+            break
+
     salvar_usuários()
     salvar_livros()
 
@@ -231,7 +256,6 @@ def check_selection(btn, lista):
         lista.append(btn.cget('text')[8:20])
 
 def print_all_selected(frame, emprestar):
-    print(usuários)
     selecionados = []
 
     for widget in frame.winfo_children():

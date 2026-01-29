@@ -24,7 +24,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 2,
+        "multa": 12,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1945",
         "renovações": 0
@@ -36,10 +36,10 @@
         "gênero": "Romance",
         "subgênero": "Realismo",
         "status": [
-            true,
-            "2026-01-06"
+            false,
+            "0"
         ],
-        "multa": 8,
+        "multa": 16,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1886",
         "renovações": 0
@@ -51,10 +51,10 @@
         "gênero": "Romance",
         "subgênero": "Young Adult – Jovem Adulto",
         "status": [
-            true,
-            "2026-01-06"
+            false,
+            "0"
         ],
-        "multa": 8,
+        "multa": 16,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "2011",
         "renovações": 0
@@ -66,10 +66,10 @@
         "gênero": "Prosa Poética",
         "subgênero": "Meditações",
         "status": [
-            true,
-            "2026-01-06"
+            false,
+            "0"
         ],
-        "multa": 8,
+        "multa": 16,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1982",
         "renovações": 0
@@ -84,7 +84,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 2,
+        "multa": 12,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1881",
         "renovações": 0
@@ -97,12 +97,12 @@
         "subgênero": "Tragédia",
         "status": [
             true,
-            "2026-01-24"
+            "2026-01-29"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1623",
-        "renovações": 2
+        "renovações": 3
     },
     {
         "código": "202512150007",
@@ -156,10 +156,10 @@
         "gênero": " Romance ",
         "subgênero": " Romance ",
         "status": [
-            true,
-            "2026-01-06"
+            false,
+            "0"
         ],
-        "multa": 8,
+        "multa": 16,
         "data de catálogo": "2026-01-05",
         "ano de publicação": "2014",
         "renovações": 0
@@ -298,5 +298,33 @@
         "ano de publicação": "1925",
         "data de catálogo": "2026-01-10",
         "renovações": 0
+    },
+    {
+        "código": "202601290000",
+        "título": "Romeu e Julieta",
+        "autor": "William Shakespeare",
+        "gênero": "Lírico ",
+        "subgênero": "Tragédia",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1597",
+        "data de catálogo": "2026-01-29"
+    },
+    {
+        "código": "202601290001",
+        "título": "O Retrato de Dorian Gray",
+        "autor": "Oscar Wilde",
+        "gênero": "Romance ",
+        "subgênero": "Ficção Histórica ",
+        "status": [
+            false,
+            "0"
+        ],
+        "multa": 0.0,
+        "ano de publicação": "1890",
+        "data de catálogo": "2026-01-29"
     }
 ]

@@ -24,6 +24,8 @@ class Cadastro(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        vcmd = self.register(validar_ano)
+
         label = ttk.Label(self, text='Cadastrando Livro', font=LARGEFONT)
         label.pack(pady=20, padx=5)
 
@@ -35,9 +37,11 @@ class Cadastro(tk.Frame):
         label_ano = ttk.Label(frame_other, text='Ano de Publicação:')
         label_genre = ttk.Label(frame_other, text='Gênero:')
         label_subgenre = ttk.Label(frame_other, text='Subgênero:')
+        label_resultado = ttk.Label(self)
         entry_title = ttk.Entry(frame_other, width=25, font=SMALLFONT)
         entry_author = ttk.Entry(frame_other, width=25, font=SMALLFONT)
-        entry_ano = ttk.Entry(frame_other, width=25, font=SMALLFONT)
+        entry_ano = ttk.Entry(frame_other, width=25, font=SMALLFONT, validate='key', validatecommand=(vcmd, '%P'))
+        entry_ano.bind('<KeyRelease>', formatar_ano)
 
         gênero = tk.StringVar()
         subgênero = tk.StringVar()
@@ -49,8 +53,7 @@ class Cadastro(tk.Frame):
 
         cb_subgenre['values'] = subgêneros
             
-        btn_submit = ttk.Button(frame_other, text='Cadastrar', command= lambda : self.cadastrar(entry_title, entry_author, gênero, subgênero, entry_ano, label_resultado))
-        label_resultado = ttk.Label(self)
+        btn_submit = ttk.Button(frame_other, text='Cadastrar', command= lambda : self.cadastrar_livro(entry_title, entry_author, gênero, subgênero, entry_ano, label_resultado))
         btn_voltar = ttk.Button(self, text='Voltar', command= lambda : [controller.página_inicial(), 
                                                                         label_resultado.config(text='')])
 
@@ -68,7 +71,8 @@ class Cadastro(tk.Frame):
         label_resultado.pack()
         btn_voltar.pack(side='left', padx=10, pady=10)
 
-    def cadastrar(self, título, autor, gênero, subgênero, publicação, label):
+    def cadastrar_livro(self, título, autor, gênero, subgênero, publicação, label):
+        label.config(bootstyle='danger')
         if not título.get():
             label['text'] = 'O TÍTULO precisa ser preenchido'
             return
@@ -125,7 +129,6 @@ class Cadastro(tk.Frame):
         gênero.set('')
         subgênero.set('')
 
-        label.config(text=f"{cadastro['título']} de {cadastro['autor']} cadastrado com SUCESSO!")
+        label.config(text=f"{cadastro['título']} de {cadastro['autor']} cadastrado com SUCESSO!", bootstyle='success')
 
         salvar_livros()
-        print(catálogo)

@@ -11,14 +11,14 @@ from menus.remover import Remover
 class Login(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-
+        
         def enter_pressionado(event):
             self.validar_login(parent, entry_username, entry_senha, controller, lbl_erro)
 
         label = ttk.Label(self, text='Login', font=LARGEFONT)
         label.pack(pady=60, padx=150)
 
-        lbl_erro = ttk.Label(self, text='', foreground='red')
+        lbl_erro = ttk.Label(self, text='', bootstyle='danger')
         lbl_erro.pack()
 
         frame_other = ttk.Frame(self)
@@ -111,7 +111,7 @@ class UsuárioCadastro(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        vcmd = self.register(validar_cpf)   
+        vcmd = self.register(validar_cpf)
 
         label = ttk.Label(self, text='Cadastrar Usuário', font=LARGEFONT)
         label.pack(pady=20)
@@ -124,8 +124,8 @@ class UsuárioCadastro(tk.Frame):
 
         tipo_usuário = tk.IntVar(self, 0)
 
-        lbl_erro = ttk.Label(self, text='', foreground='red')
-        lbl_sucesso = ttk.Label(self, text='', foreground='blue')
+        lbl_erro = ttk.Label(self, text='', bootstyle='danger')
+        lbl_sucesso = ttk.Label(self, text='', bootstyle='success')
         radio_usuário = ttk.Radiobutton(frame_radio, text='Usuário', variable=tipo_usuário, value=1)
         radio_admin = ttk.Radiobutton(frame_radio, text='Admin', variable=tipo_usuário, value=2)
         label_usuário = ttk.Label(frame_other, text='Usuário:')

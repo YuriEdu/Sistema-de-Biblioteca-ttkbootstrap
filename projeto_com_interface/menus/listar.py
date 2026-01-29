@@ -62,12 +62,12 @@ class Listar(tk.Toplevel):
         if sistema == 'Windows':
             x = (largura_tela - 900) // 2
             y = (altura_tela - (altura_tela // 1.2)) // 2
-            self.geometry(f'{900}x{int(altura_tela // 1.2)}+{x}+{int(y)}')
+            self.geometry(f'{900}x{int(altura_tela // 1.2)}')
 
         if sistema == 'Linux':
             x = (largura_tela - 800) // 2
             y = altura_tela
-            self.geometry(f'{800}x{altura_tela - (altura_tela // 5)}+{x}+{int(y)}')
+            self.geometry(f'{800}x{altura_tela - (altura_tela // 5)}')
 
         label_header = ttk.Label(self, text='Catálogo', font=LARGEFONT)
         label_header.pack(pady=20)
@@ -80,12 +80,14 @@ class Listar(tk.Toplevel):
         btn_emprestar = ttk.Checkbutton(frame, text='Emprestar', bootstyle='primary-outline-toolbutton', 
                                         command=lambda : [self.emprestar(catálogo, frame_interior, label_header, buttons), 
                                                           btn_emprestar.config(state=DISABLED),
-                                                          btn_devolver.config(state=DISABLED)])
+                                                          btn_devolver.config(state=DISABLED),
+                                                          canvas.yview_moveto(0.0) ])
 
         btn_devolver = ttk.Checkbutton(frame, text='Devolver', bootstyle='primary-outline-toolbutton', 
                                        command=lambda : [self.devolver(catálogo, frame_interior, label_header, buttons), 
                                                           btn_emprestar.config(state=DISABLED),
-                                                          btn_devolver.config(state=DISABLED)])
+                                                          btn_devolver.config(state=DISABLED),
+                                                          canvas.yview_moveto(0.0)])
         
         buttons.append(btn_emprestar)
         buttons.append(btn_devolver)
@@ -174,7 +176,8 @@ class Listar(tk.Toplevel):
                                                                             listar_itens(lista, janela), 
                                                                             frame_voltar.destroy(),
                                                                             label.config(text='Catálogo'),
-                                                                            ativar_botões_de_menu(button_list)])
+                                                                            ativar_botões_de_menu(button_list),
+                                                                            janela.master.yview_moveto(0.0)])
         btn_voltar.pack(side='left', pady=5, padx=5)
 
 #        btn_finalizar = ttk.Button(frame_voltar, text='Finalizar',
@@ -185,7 +188,9 @@ class Listar(tk.Toplevel):
                 users.append(i)
         
         btn_finalizar = ttk.Button(frame_voltar, text='Finalizar',
-                                   command=lambda : [frame_voltar.destroy(), self.listar_usuários(users, janela, lista, label, button_list)])
+                                   command=lambda : [frame_voltar.destroy(), 
+                                                     self.listar_usuários(users, janela, lista, label, button_list), 
+                                                     janela.master.yview_moveto(0.0)])
         btn_finalizar.pack(side='right', pady=5, padx=5)
 
     def devolver(self, lista, janela, label, button_list):
@@ -206,7 +211,8 @@ class Listar(tk.Toplevel):
                                                                             listar_itens(lista, janela), 
                                                                             frame_voltar.destroy(),
                                                                             label.config(text='Catálogo'),
-                                                                            ativar_botões_de_menu(button_list)])
+                                                                            ativar_botões_de_menu(button_list),
+                                                                            janela.master.yview_moveto(0.0)])
         btn_voltar.pack(side='left', pady=5, padx=5)
 
         btn_finalizar = ttk.Button(frame_voltar, text='Finalizar',
@@ -216,18 +222,16 @@ class Listar(tk.Toplevel):
     def criar_buttons_user(self, dict, janela, livros_para_emprestar, lista, janela_original, label, button_list):
         text = gerar_texto(dict, tipo='usuário')
         separador = 'CPF: '
-        cpf = text[8:34].split(separador)[1]
+        separador_2 = '\nTelefone: '
+        cpf = text.split(separador)[1].split(separador_2)[0]
         btn = ttk.Button(janela, text=text, style='success', 
-                        command=lambda : [emprestar_livros(livros_para_emprestar, cpf), self.emprestar(lista, janela_original, label, button_list)])
+                        command=lambda : [emprestar_livros(livros_para_emprestar, cpf), self.emprestar(lista, janela_original, label, button_list), janela.master.yview_moveto(0.0)])
         return btn 
 
     def listar_usuários(self, user_list, janela, lista, label, button_list):
         livros_para_emprestar = print_all_selected(janela, True)
 
-        print(livros_para_emprestar)
         destruir(janela)
-
-        print(livros_para_emprestar)
 
         if sistema == 'Windows':
             pad_x = 10.7
