@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 import json
 import tkinter as tk
 import platform
@@ -234,8 +234,6 @@ def cadastrar_usuário(entry_list, radio, erro, sucesso):
     sucesso.config(text='Cadastro Realizado com SUCESSO!', bootstyle='inverse-success')
 
 def emprestar_livros(livros_para_emprestar, cpf_usuário):
-    print(livros_para_emprestar)
-
     for i in livros_para_emprestar:
         for index, livro in enumerate(catálogo):
             if i == livro['código'] and not livro['status'][0]:
@@ -247,6 +245,10 @@ def emprestar_livros(livros_para_emprestar, cpf_usuário):
             for i in livros_para_emprestar:
                 usuários[índice]['livros'] += f"{i}; "
             break
+
+    devolução = date.today() + timedelta(days=14)
+    
+    message = messagebox.showinfo('Aviso', f"Devolver ou renovar até {devolução}")
 
     salvar_usuários()
     salvar_livros()

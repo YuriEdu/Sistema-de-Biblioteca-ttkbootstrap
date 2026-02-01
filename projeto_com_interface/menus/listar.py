@@ -225,7 +225,7 @@ class Listar(tk.Toplevel):
         separador_2 = '\nTelefone: '
         cpf = text.split(separador)[1].split(separador_2)[0]
         btn = ttk.Button(janela, text=text, style='success', 
-                        command=lambda : [emprestar_livros(livros_para_emprestar, cpf), self.emprestar(lista, janela_original, label, button_list), janela.master.yview_moveto(0.0)])
+                        command=lambda : [emprestar_livros(livros_para_emprestar, cpf), self.emprestar(lista, janela_original, label, button_list), janela.master.master.yview_moveto(0.0)])
         return btn 
 
     def listar_usuários(self, user_list, janela, lista, label, button_list):

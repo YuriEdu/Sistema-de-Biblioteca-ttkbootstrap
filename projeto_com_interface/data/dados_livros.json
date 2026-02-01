@@ -6,8 +6,8 @@
         "gênero": "Romance",
         "subgênero": "Distopia",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-02-01"
         ],
         "multa": 0.0,
         "data de catálogo": "2025-12-15",
@@ -24,7 +24,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 12,
+        "multa": 18,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1945",
         "renovações": 0
@@ -36,8 +36,8 @@
         "gênero": "Romance",
         "subgênero": "Realismo",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-02-01"
         ],
         "multa": 16,
         "data de catálogo": "2025-12-15",
@@ -84,7 +84,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 12,
+        "multa": 18,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1881",
         "renovações": 0
