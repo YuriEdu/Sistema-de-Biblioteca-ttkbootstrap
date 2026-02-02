@@ -63,7 +63,6 @@ class PáginaUsuário(tk.Toplevel):
                 break
         
         códigos_livros_pendentes.pop()
-        print(códigos_livros_pendentes)
 
         livros_pendentes = []
         for código in códigos_livros_pendentes:
