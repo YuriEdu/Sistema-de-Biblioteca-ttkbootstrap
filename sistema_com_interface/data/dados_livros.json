@@ -24,7 +24,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 18,
+        "multa": 20,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1945",
         "renovações": 0
@@ -39,7 +39,7 @@
             true,
             "2026-02-01"
         ],
-        "multa": 16,
+        "multa": 0.0,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1886",
         "renovações": 0
@@ -51,10 +51,10 @@
         "gênero": "Romance",
         "subgênero": "Young Adult – Jovem Adulto",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-02-02"
         ],
-        "multa": 16,
+        "multa": 0.0,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "2011",
         "renovações": 0
@@ -66,10 +66,10 @@
         "gênero": "Prosa Poética",
         "subgênero": "Meditações",
         "status": [
-            false,
-            "0"
+            true,
+            "2026-02-02"
         ],
-        "multa": 16,
+        "multa": 0.0,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1982",
         "renovações": 0
@@ -84,7 +84,7 @@
             true,
             "2026-01-09"
         ],
-        "multa": 18,
+        "multa": 20,
         "data de catálogo": "2025-12-15",
         "ano de publicação": "1881",
         "renovações": 0

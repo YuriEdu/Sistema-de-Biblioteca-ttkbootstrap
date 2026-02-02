@@ -23,4 +23,5 @@ style.configure(
 
 app.title('Biblioteca')
 app.resizable(False, False)
+salvar_livros()
 app.mainloop()

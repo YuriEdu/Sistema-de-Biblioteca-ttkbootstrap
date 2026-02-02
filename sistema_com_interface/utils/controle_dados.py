@@ -5,30 +5,44 @@ import platform
 from tkinter import messagebox
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+import sys
+import os
 
 sistema = platform.system()
 
-if sistema == 'Windows':
-    DADOSLIVROS = 'data/dados_livros.json'
-    DADOSUSUÁRIOS = 'data/dados_usuários.json'
-    DADOSGÊNEROS = 'data/gêneros.txt'
-    DADOSSUBGÊNEROS = 'data/subgêneros.txt'
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 
-    LARGEFONT = ('Bookman Old Style', 35, 'bold')
-    MEDIUMFONT = ('Verdana', 15)
-    SMALLFONT = ('Verdana', 10)
-    BUTTONFONT = '-size 9'
+if hasattr(sys, '_MEIPASS'):
+    DADOSLIVROS = resource_path(os.path.join("data", "dados_livros.json"))
+    DADOSUSUÁRIOS = resource_path(os.path.join("data", "dados_usuários.json"))
+    DADOSGÊNEROS = resource_path(os.path.join("data", "gêneros.txt"))
+    DADOSSUBGÊNEROS = resource_path(os.path.join("data", "subgêneros.txt"))
 
-if sistema == 'Linux':
-    DADOSLIVROS = 'projeto_com_interface/data/dados_livros.json'
-    DADOSUSUÁRIOS = 'projeto_com_interface/data/dados_usuários.json'
-    DADOSGÊNEROS = 'projeto_com_interface/data/gêneros.txt'
-    DADOSSUBGÊNEROS = 'projeto_com_interface/data/subgêneros.txt'
+else:
+    if sistema == 'Windows':
+        DADOSLIVROS = 'data/dados_livros.json'
+        DADOSUSUÁRIOS = 'data/dados_usuários.json'
+        DADOSGÊNEROS = 'data/gêneros.txt'
+        DADOSSUBGÊNEROS = 'data/subgêneros.txt'
 
-    LARGEFONT = ('URW Bookman', 35, 'bold')
-    MEDIUMFONT = ('Veranda', 15)
-    SMALLFONT = ('Veranda', 10)
-    BUTTONFONT = '-size 10'
+        LARGEFONT = ('Bookman Old Style', 35, 'bold')
+        MEDIUMFONT = ('Verdana', 15)
+        SMALLFONT = ('Verdana', 10)
+        BUTTONFONT = '-size 9'
+
+    if sistema == 'Linux':
+        DADOSLIVROS = 'sistema_com_interface/data/dados_livros.json'
+        DADOSUSUÁRIOS = 'sistema_com_interface/data/dados_usuários.json'
+        DADOSGÊNEROS = 'sistema_com_interface/data/gêneros.txt'
+        DADOSSUBGÊNEROS = 'sistema_com_interface/data/subgêneros.txt'
+
+        LARGEFONT = ('URW Bookman', 35, 'bold')
+        MEDIUMFONT = ('Veranda', 15)
+        SMALLFONT = ('Veranda', 10)
+        BUTTONFONT = '-size 10'
 
 btn_variables = []
 
@@ -239,6 +253,7 @@ def emprestar_livros(livros_para_emprestar, cpf_usuário):
             if i == livro['código'] and not livro['status'][0]:
                 catálogo[index]['status'][0] = True
                 catálogo[index]['status'][1] = str(date.today())
+                catálogo[index]['multa'] = 0.0
     
     for índice, user in enumerate(usuários):
         if user['cpf'].strip() == cpf_usuário.strip():
